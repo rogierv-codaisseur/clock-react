@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 
 export default class Clock extends Component {
-  state = {
-    hours: new Date().getHours(),
-    minutes: new Date().getMinutes(),
-    seconds: new Date().getSeconds()
-  };
+  constructor() {
+    super();
+    this.state = this.updateClock();
+  }
 
-  tick() {
-    this.setState(() => ({
+  updateClock() {
+    return {
       hours: new Date().getHours(),
       minutes: new Date().getMinutes(),
       seconds: new Date().getSeconds()
-    }));
+    };
+  }
+
+  tick() {
+    this.setState(this.updateClock());
   }
 
   componentDidMount() {
